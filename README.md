@@ -1,5 +1,7 @@
 Implement Dijkstra's algorithm to find the shortest path between two nodes. If you need a reminder of how the algorithm works, have a look at this explanation of Dijkstra's algorithm.
 
+https://www.codingame.com/playgrounds/1608/shortest-paths-with-dijkstras-algorithm/dijkstras-algorithm
+
 If you are having trouble making a start try creating a flow chart and use pseudo code.
 
 The graph will be given as an specifying the weighted, directed edges of the graph:
