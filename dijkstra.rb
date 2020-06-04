@@ -1,4 +1,6 @@
 class Node
+  attr_accessor :name, :edges, :minimum_distance, :visited
+
   def initialize(name, edges={}, minimum_distance=Float::INFINITY, visited=false)
     @name = name
     @edges = edges
