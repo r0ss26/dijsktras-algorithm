@@ -1,11 +1,13 @@
+# Representation of a node on a graph.
 class Node
-  attr_accessor :name, :edges, :minimum_distance, :visited
+  attr_accessor :name, :edges, :minimum_distance, :visited, :path
 
   def initialize(name, edges={}, minimum_distance=Float::INFINITY, visited=false)
     @name = name
     @edges = edges
     @minimum_distance = minimum_distance
     @visited = visited
+    @path = []
   end
 
   def to_s
@@ -34,6 +36,7 @@ class Dijkstra
     distance_from_current_node = current_node.edges[neighbour_node.name]
     new_distance = current_node.minimum_distance + distance_from_current_node 
     if new_distance < neighbour_node.minimum_distance
+      neighbour_node.path = [*current_node.path, neighbour_node.name]
       return new_distance
     end
     return neighbour_node.minimum_distance
@@ -81,7 +84,11 @@ class Dijkstra
       visited_count += 1
     end
 
-    puts start_node
+  # Return the shortest distance and path between two nodes.
+  return {
+    distance: nodes[end_node].minimum_distance, 
+    path: nodes[end_node].path
+  }
   end
 end
 
