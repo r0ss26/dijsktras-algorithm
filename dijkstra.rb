@@ -14,7 +14,6 @@ class Node
 end
 
 class Dijkstra
-
   # Takes a ruby hash representation of a graph and returns
   # a hash of node objects.
   def self.hash_to_nodes(graph)
@@ -28,6 +27,15 @@ class Dijkstra
     return graph_nodes
   end
 
+  # Calculates the minimum distance between a node and a neighbouring node.
+  def self.calculate_neighbouring_node_minimum_distance(current_node, neighbour_node)
+    distance_from_current_node = current_node.edges[neighbour_node.name]
+    new_distance = current_node.minimum_distance + distance_from_current_node 
+    if new_distance < neighbour_node.minimum_distance
+      return new_distance
+    end
+    return neighbour_node.minimum_distance
+  end
   def self.dijkstra(graph, start_node, end_node)
     nodes = hash_to_nodes(graph)
 
