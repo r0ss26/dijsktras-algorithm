@@ -36,6 +36,7 @@ class Dijkstra
     end
     return neighbour_node.minimum_distance
   end
+
   # Finds the unvisited node with the smallest minimum distance from a hash of nodes.
   def self.select_next_current_node(nodes)
     smallest_unvisited_node = nil
@@ -48,6 +49,17 @@ class Dijkstra
     end
     return smallest_unvisited_node
   end
+
+  def self.calculate_all_neighours_minimum_distance(nodes_hash, current_node)
+   current_node.edges.each do |node_name, distance|
+      neighbour_node = nodes_hash[node_name]
+      neighbour_node.minimum_distance = calculate_neighbouring_node_minimum_distance(current_node, neighbour_node)
+    end
+    current_node.visited = true
+    return nodes_hash
+  end
+
+
   def self.dijkstra(graph, start_node, end_node)
     nodes = hash_to_nodes(graph)
 
