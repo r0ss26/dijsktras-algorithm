@@ -62,6 +62,19 @@ class Dijkstra
 
   def self.dijkstra(graph, start_node, end_node)
     nodes = hash_to_nodes(graph)
+    
+    start_node = nodes[start_node]
+    start_node.minimum_distance = 0
+    
+    # calculate the minimum distance for all nodes in the graph
+    current_node = start_node
+    visited_count = 0
+    while visited_count < nodes.keys.length
+      nodes = calculate_all_neighours_minimum_distance(nodes, current_node)
+      current_node.visited = true
+      current_node = select_next_current_node(nodes)
+      visited_count += 1
+    end
 
     puts start_node
   end
